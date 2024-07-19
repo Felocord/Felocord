@@ -7,7 +7,7 @@ on:
 
 jobs:
     build:
-        name: Build and pusy
+        name: Build and push
         runs-on: ubuntu-latest
 
         steps:
