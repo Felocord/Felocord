@@ -4,15 +4,15 @@ How to update:
 - git push origin main
 
 
-# Felocord [![Discord](https://img.shields.io/discord/1196075698301968455?style=social&logo=discord&label=Felitendo)](https://discord.gg/XjYgWXHb9Q)
+# Felocord [![Discord](https://img.shields.io/discord/1196075698301968455?style=social&logo=discord&label=Felitendo)](https://felo.gg/discord)
 A mod for Discord's mobile apps, a fork of [Vendetta](https://github.com/vendetta-mod/Vendetta/).
 
 ## Installing
 
 ### Android
 
-- **Root** with Xposed - [FelocordXposed](https://github.com/Felitendo/FelocordXposed/releases/latest)
-- **Non-root** - [FelocordManager](https://github.com/felitendo/FelocordManager/releases/latest)
+- **Root** with Xposed - [FelocordXposed](https://github.com/Felocord/Xposed/releases/latest)
+- **Non-root** - [FelocordManager](https://github.com/Felocord/Manager/releases/latest)
 
 ### iOS
 - [**FelocordTweak**](https://github.com/felitendo/FelocordTweak) - Get prebuilt rootful and rootless `.deb` files or the prepatched `.ipa `
@@ -22,7 +22,7 @@ A mod for Discord's mobile apps, a fork of [Vendetta](https://github.com/vendett
 1. Go to Settings > General and enable Developer Settings.
 1. Clone the repo:
     ```
-    git clone https://github.com/felitendo/Felocord
+    git clone https://github.com/Felocord/Felocord
     ```
 1. Install dependencies:
     ```
