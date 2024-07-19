@@ -12,4 +12,4 @@ export interface Logger {
 }
 
 export const logModule = findByName("Logger");
-export const logger: Logger = new logModule("Bunny");
+export const logger: Logger = new logModule("Felocord");

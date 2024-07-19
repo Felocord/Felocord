@@ -1,22 +1,22 @@
-import PyoncordIcon from "@assets/icons/pyoncord.png";
+import FelitendoIcon from "@assets/icons/felitendo.png";
 import { Strings } from "@core/i18n";
 import { getAssetIDByName } from "@lib/api/assets";
 import { isFontSupported, isThemeSupported } from "@lib/api/native/loader";
 import { useProxy } from "@lib/api/storage";
 import { settings } from "@lib/settings";
 import { registerSection } from "@lib/ui/settings";
-import { version } from "bunny-build-info";
+import { version } from "felocord-build-info";
 
-export { PyoncordIcon };
+export { FelitendoIcon };
 
 export default function initSettings() {
     registerSection({
-        name: "Bunny",
+        name: "Felocord",
         items: [
             {
                 key: "BUNNY",
                 title: () => Strings.BUNNY,
-                icon: { uri: PyoncordIcon },
+                icon: { uri: FelitendoIcon },
                 render: () => import("@core/ui/settings/pages/General"),
                 rawTabsConfig: {
                     useTrailing: () => `(${version})`

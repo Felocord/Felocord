@@ -18,7 +18,7 @@ function useIsFirstRender() {
 export function patchTabsUI(unpatches: (() => void | boolean)[]) {
     settingConstants.SETTING_RENDERER_CONFIG.VendettaCustomPage = {
         type: "route",
-        title: () => "Bunny",
+        title: () => "Felocord",
         screen: {
             route: "VendettaCustomPage",
             getComponent: () => CustomPageRenderer

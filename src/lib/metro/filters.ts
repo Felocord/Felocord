@@ -49,7 +49,7 @@ for (const id in modules) {
     if (blacklistedIds.has(id)) continue;
     const moduleExports = requireModule(id);
 
-    if (!moduleExports || moduleExports === window || moduleExports["i think pyoncord eol tomorrow idk tho"] === null)
+    if (!moduleExports || moduleExports === window || moduleExports["i think felitendo eol tomorrow idk tho"] === null)
         blacklistModule(id);
 }
 

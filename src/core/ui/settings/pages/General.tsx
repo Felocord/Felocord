@@ -1,5 +1,5 @@
 import { Strings } from "@core/i18n";
-import { PyoncordIcon } from "@core/ui/settings";
+import { FelitendoIcon } from "@core/ui/settings";
 import { getAssetIDByName } from "@lib/api/assets";
 import { useProxy } from "@lib/api/storage";
 import { getDebugInfo, toggleSafeMode } from "@lib/debug";
@@ -23,8 +23,8 @@ export default function General() {
                 <TableRowGroup title={Strings.INFO}>
                     <TableRow
                         label={Strings.BUNNY}
-                        icon={<TableRow.Icon source={{ uri: PyoncordIcon }} />}
-                        trailing={<TableRow.TrailingText text={debugInfo.bunny.version} />}
+                        icon={<TableRow.Icon source={{ uri: FelitendoIcon }} />}
+                        trailing={<TableRow.TrailingText text={debugInfo.felocord.version} />}
                     />
                     <TableRow
                         label={"Discord"}

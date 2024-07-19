@@ -1,4 +1,4 @@
-import { ApplicationCommand, ApplicationCommandInputType, ApplicationCommandType, BunnyApplicationCommand } from "@lib/api/commands/types";
+import { ApplicationCommand, ApplicationCommandInputType, ApplicationCommandType, FelocordApplicationCommand } from "@lib/api/commands/types";
 import { after, instead } from "@lib/api/patcher";
 import { logger } from "@lib/utils/logger";
 import { commands as commandsModule, messageUtil } from "@metro/common";
@@ -11,7 +11,7 @@ let commands: ApplicationCommand[] = [];
 export function patchCommands() {
     const unpatch = after("getBuiltInCommands", commandsModule, ([type], res: ApplicationCommand[]) => {
         if (type === ApplicationCommandType.CHAT) {
-            return res.concat(commands.filter(c => c.__bunny?.shouldHide?.() !== false));
+            return res.concat(commands.filter(c => c.__felocord?.shouldHide?.() !== false));
         }
     });
 
@@ -28,7 +28,7 @@ export function patchCommands() {
     };
 }
 
-export function registerCommand(command: BunnyApplicationCommand): () => void {
+export function registerCommand(command: FelocordApplicationCommand): () => void {
     // Get built in commands
     const builtInCommands = commandsModule.getBuiltInCommands(ApplicationCommandType.CHAT, true, false);
     builtInCommands.sort((a: ApplicationCommand, b: ApplicationCommand) => parseInt(b.id!) - parseInt(a.id!));
@@ -39,7 +39,7 @@ export function registerCommand(command: BunnyApplicationCommand): () => void {
     command.id = (parseInt(lastCommand.id, 10) - 1).toString();
 
     // Fill optional args
-    command.__bunny = {
+    command.__felocord = {
         shouldHide: command.shouldHide
     };
 

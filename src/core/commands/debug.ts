@@ -16,8 +16,8 @@ export default () => <ApplicationCommand>{
     execute([ephemeral], ctx) {
         const info = getDebugInfo();
         const content = [
-            "**Bunny Debug Info**",
-            `> Bunny: ${info.bunny.version} (${info.bunny.loader.name} ${info.bunny.loader.version})`,
+            "**Felocord Debug Info**",
+            `> Felocord: ${info.felocord.version} (${info.felocord.loader.name} ${info.felocord.loader.version})`,
             `> Discord: ${info.discord.version} (${info.discord.build})`,
             `> React: ${info.react.version} (RN ${info.react.nativeVersion})`,
             `> Hermes: ${info.hermes.version} (bcv${info.hermes.bytecodeVersion})`,

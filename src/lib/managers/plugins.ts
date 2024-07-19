@@ -25,7 +25,7 @@ export interface PluginManifest {
     };
 }
 
-export interface BunnyPlugin {
+export interface FelocordPlugin {
     id: string;
     manifest: PluginManifest;
     enabled: boolean;
@@ -33,7 +33,7 @@ export interface BunnyPlugin {
     js: string;
 }
 
-export const plugins = wrapSync(createStorage<Record<string, BunnyPlugin>>(createMMKVBackend("VENDETTA_PLUGINS")));
+export const plugins = wrapSync(createStorage<Record<string, FelocordPlugin>>(createMMKVBackend("VENDETTA_PLUGINS")));
 const loadedPlugins: Record<string, EvaledPlugin> = {};
 
 async function pluginFetch(url: string) {
@@ -86,7 +86,7 @@ export async function installPlugin(id: string, enabled = true) {
 /**
  * @internal
  */
-export async function evalPlugin(plugin: BunnyPlugin) {
+export async function evalPlugin(plugin: FelocordPlugin) {
     const vendettaForPlugins = {
         ...window.vendetta,
         plugin: {
@@ -95,7 +95,7 @@ export async function evalPlugin(plugin: BunnyPlugin) {
             // Wrapping this with wrapSync is NOT an option.
             storage: await createStorage<Record<string, any>>(createMMKVBackend(plugin.id)),
         },
-        logger: new logModule(`Bunny » ${plugin.manifest.name}`),
+        logger: new logModule(`Felocord » ${plugin.manifest.name}`),
     };
     const pluginString = `vendetta=>{return ${plugin.js}}\n//# sourceURL=${plugin.id}`;
 

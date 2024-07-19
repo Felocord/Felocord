@@ -21,7 +21,7 @@ let context = null;
 const config = {
     entryPoints: ["src/entry.ts"],
     bundle: true,
-    outfile: "dist/bunny.js",
+    outfile: "dist/felocord.js",
     format: "iife",
     splitting: false,
     minify: false,
@@ -32,7 +32,7 @@ const config = {
         "const-and-let": false
     },
     footer: {
-        js: "//# sourceURL=bunny"
+        js: "//# sourceURL=felocord"
     },
     loader: {
         ".png": "dataurl"
@@ -73,7 +73,7 @@ const config = {
                             transform: {
                                 constModules: {
                                     globals: {
-                                        "bunny-build-info": {
+                                        "felocord-build-info": {
                                             version: `"${context.hash}-${releaseBranch ?? "local"}"`
                                         }
                                     }

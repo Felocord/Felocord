@@ -13,7 +13,7 @@ const _disposer = new Array<() => unknown>;
 
 export function unload() {
     for (const d of _disposer) if (typeof d === "function") d();
-    delete window.bunny;
+    delete window.felocord;
 }
 
 /**

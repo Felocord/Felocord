@@ -2,19 +2,19 @@ import { formatString, Strings } from "@core/i18n";
 import Card, { CardWrapper } from "@core/ui/components/Card";
 import { getAssetIDByName } from "@lib/api/assets";
 import { purgeStorage, useProxy } from "@lib/api/storage";
-import { BunnyPlugin, fetchPlugin, getSettings, removePlugin, startPlugin, stopPlugin } from "@lib/managers/plugins";
+import { FelocordPlugin, fetchPlugin, getSettings, removePlugin, startPlugin, stopPlugin } from "@lib/managers/plugins";
 import { ButtonColors } from "@lib/utils/types";
 import { clipboard, NavigationNative } from "@metro/common";
 import { showConfirmationAlert } from "@ui/alerts";
 import { showToast } from "@ui/toasts";
 
-async function stopThenStart(plugin: BunnyPlugin, callback: Function) {
+async function stopThenStart(plugin: FelocordPlugin, callback: Function) {
     if (plugin.enabled) stopPlugin(plugin.id, false);
     callback();
     if (plugin.enabled) await startPlugin(plugin.id);
 }
 
-export default function PluginCard({ item: plugin, index }: CardWrapper<BunnyPlugin>) {
+export default function PluginCard({ item: plugin, index }: CardWrapper<FelocordPlugin>) {
     useProxy(plugin);
 
     const settings = getSettings(plugin.id);

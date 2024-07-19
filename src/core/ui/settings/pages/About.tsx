@@ -13,7 +13,7 @@ export default function About() {
     const versions = [
         {
             label: Strings.BUNNY,
-            version: debugInfo.bunny.version,
+            version: debugInfo.felocord.version,
             icon: "ic_progress_wrench_24px",
         },
         {
@@ -41,7 +41,7 @@ export default function About() {
     const platformInfo = [
         {
             label: Strings.LOADER,
-            version: `${debugInfo.bunny.loader.name} (${debugInfo.bunny.loader.version})`,
+            version: `${debugInfo.felocord.loader.name} (${debugInfo.felocord.loader.version})`,
             icon: "ic_download_24px",
         },
         {

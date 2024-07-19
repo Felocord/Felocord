@@ -17,12 +17,12 @@ export interface ApplicationCommand {
     displayDescription?: string;
     inputType?: ApplicationCommandInputType;
     type?: ApplicationCommandType;
-    __bunny?: {
+    __felocord?: {
         shouldHide: () => boolean;
     };
 }
 
-export interface BunnyApplicationCommand extends ApplicationCommand {
+export interface FelocordApplicationCommand extends ApplicationCommand {
     shouldHide: () => boolean;
 }
 

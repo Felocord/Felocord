@@ -49,9 +49,9 @@ export namespace Metro {
         hasError: boolean;
         /** Only available on Discord's development environment, will never be defined on release builds */
         hot?: HotModuleReloadingData | undefined;
-        /** Cached `import *` imports in Metro, always an empty object as Bunny prevents outdated import cache */
+        /** Cached `import *` imports in Metro, always an empty object as Felocord prevents outdated import cache */
         importedAll: any;
-        /** Cached `import module from "./module"` imports in Metro, always an empty object as Bunny prevents outdated import cache */
+        /** Cached `import module from "./module"` imports in Metro, always an empty object as Felocord prevents outdated import cache */
         importedDefault: any;
         /** If factory has been successfully called */
         isInitialized: boolean;

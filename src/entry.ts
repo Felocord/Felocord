@@ -1,4 +1,4 @@
-import { version } from "bunny-build-info";
+import { version } from "felocord-build-info";
 import { instead } from "spitroast";
 
 // @ts-ignore - shut up fr
@@ -7,7 +7,7 @@ globalThis.window = globalThis;
 const init = () => {
     try {
         // This logs in the native logging implementation, e.g. logcat
-        console.log("Hello from Bunny!");
+        console.log("Hello from Felocord!");
 
         // Make 'freeze' and 'seal' do nothing
         Object.freeze = Object.seal = Object;
@@ -19,9 +19,9 @@ const init = () => {
 
         console.log(stack ?? e?.toString?.() ?? e);
         alert([
-            "Failed to load Bunny!\n",
+            "Failed to load Felocord!\n",
             `Build Number: ${ClientInfoManager.Build}`,
-            `Bunny: ${version}`,
+            `Felocord: ${version}`,
             stack || e?.toString?.(),
         ].join("\n"));
     }

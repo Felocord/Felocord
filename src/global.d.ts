@@ -7,7 +7,7 @@ declare global {
         [key: string]: any;
         modules: Metro.ModuleList;
         vendetta: any;
-        bunny: typeof import("@lib");
+        felocord: typeof import("@lib");
         React: typeof import("react");
     }
 }
