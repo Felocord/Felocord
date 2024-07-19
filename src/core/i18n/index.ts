@@ -45,7 +45,7 @@ export function initFetchI18nStrings() {
         if (!_loadedLocale.has(resolvedLocale)) {
             _loadedLocale.add(resolvedLocale);
 
-            fetch(`https://raw.githubusercontent.com/felitendo/i18n/main/resources/${resolvedLocale}/felocord.json`)
+            fetch(`https://raw.githubusercontent.com/felocord/i18n/main/resources/${resolvedLocale}/felocord.json`)
                 .then(r => r.json())
                 .then(strings => _loadedStrings[resolvedLocale] = strings)
                 .then(() => resolvedLocale === _lastSetLocale && (_currentLocale = resolvedLocale))
