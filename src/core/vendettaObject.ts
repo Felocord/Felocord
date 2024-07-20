@@ -80,14 +80,14 @@ export const initVendettaObject = (): any => {
             }
         },
         constants: {
-            DISCORD_SERVER: "https://discord.gg/n9QQ4XhhJP",
-            GITHUB: "https://github.com/vendetta-mod",
-            PROXY_PREFIX: "https://vd-plugins.github.io/proxy",
+            DISCORD_SERVER: "https://felo.gg/discord",
+            GITHUB: "https://github.com/Felocord",
+            PROXY_PREFIX: "https://bn-plugins.github.io/vd-proxy",
             HTTP_REGEX: /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/,
             HTTP_REGEX_MULTI: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&//=]*)/g,
-            DISCORD_SERVER_ID: "1015931589865246730",
-            PLUGINS_CHANNEL_ID: "1091880384561684561",
-            THEMES_CHANNEL_ID: "1091880434939482202",
+            DISCORD_SERVER_ID: "1040629044284244008",
+            PLUGINS_CHANNEL_ID: "1264195903535972363",
+            THEMES_CHANNEL_ID: "1264195933953064970",
         },
         utils: {
             findInReactTree: (tree: { [key: string]: any; }, filter: any) => utils.findInReactTree(tree, filter),
