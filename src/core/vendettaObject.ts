@@ -82,7 +82,7 @@ export const initVendettaObject = (): any => {
         constants: {
             DISCORD_SERVER: "https://felo.gg/discord",
             GITHUB: "https://github.com/Felocord",
-            PROXY_PREFIX: "https://bn-plugins.github.io/vd-proxy",
+            PROXY_PREFIX: "https://bn-plugins.github.io/vd-proxy" || "https://vd-plugins.github.io/proxy",
             HTTP_REGEX: /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/,
             HTTP_REGEX_MULTI: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&//=]*)/g,
             DISCORD_SERVER_ID: "1040629044284244008",
