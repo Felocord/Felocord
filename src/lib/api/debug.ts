@@ -6,7 +6,7 @@ import { settings } from "@lib/api/settings";
 import { getThemeFromLoader, selectTheme, themes } from "@lib/themes";
 import { logger } from "@lib/utils/logger";
 import { showToast } from "@ui/toasts";
-import { version } from "bunny-build-info";
+import { version } from "felocord-build-info";
 import { Platform, type PlatformConstants } from "react-native";
 export let socket: WebSocket;
 
@@ -99,13 +99,13 @@ export function getDebugInfo() {
 
     return {
         /**
-         * @deprecated use `bunny` field
+         * @deprecated use `felocord` field
          * */
         vendetta: {
             version: versionHash.split("-")[0],
             loader: getLoaderName(),
         },
-        bunny: {
+        felocord: {
             version: versionHash,
             loader: {
                 name: getLoaderName(),

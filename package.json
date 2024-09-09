@@ -1,9 +1,9 @@
 {
-    "name": "bunny",
+    "name": "felocord",
     "private": true,
     "author": {
         "name": "Pyoncord Team",
-        "url": "https://github.com/pyoncord"
+        "url": "https://github.com/felitendo"
     },
     "scripts": {
         "build": "node scripts/build.mjs",

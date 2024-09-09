@@ -1,17 +1,17 @@
-import PyoncordIcon from "@assets/icons/pyoncord.png";
+import PyoncordIcon from "@assets/icons/felitendo.png";
 import { Strings } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { isFontSupported, isThemeSupported } from "@lib/api/native/loader";
 import { settings } from "@lib/api/settings";
 import { useProxy } from "@lib/api/storage";
 import { registerSection } from "@ui/settings";
-import { version } from "bunny-build-info";
+import { version } from "felocord-build-info";
 
 export { PyoncordIcon };
 
 export default function initSettings() {
     registerSection({
-        name: "Bunny",
+        name: "Felocord",
         items: [
             {
                 key: "BUNNY",

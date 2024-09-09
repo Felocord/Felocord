@@ -1,4 +1,4 @@
-// New iteration of storage API, mostly yoinked from unreleased pyoncord (and sunrise?)
+// New iteration of storage API, mostly yoinked from unreleased felitendo (and sunrise?)
 import { fileExists, readFile, writeFile } from "@lib/api/native/fs";
 import { Emitter } from "@lib/utils/Emitter";
 
@@ -8,9 +8,9 @@ interface StorageBackend<T = unknown> {
     exists: () => Promise<boolean>;
 }
 
-const emitterSymbol = Symbol.for("bunny.storage.emitter");
-const storageInitErrorSymbol = Symbol.for("bunny.storage.initError");
-const storagePromiseSymbol = Symbol.for("bunny.storage.promise");
+const emitterSymbol = Symbol.for("felocord.storage.emitter");
+const storageInitErrorSymbol = Symbol.for("felocord.storage.initError");
+const storagePromiseSymbol = Symbol.for("felocord.storage.promise");
 
 const _loadedPath = {} as Record<string, any>;
 

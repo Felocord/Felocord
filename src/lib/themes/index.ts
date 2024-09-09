@@ -1,5 +1,5 @@
 /**
- * Theming system in Bunny is currently a prototype, expect an unreadable theme implementation below
+ * Theming system in Felocord is currently a prototype, expect an unreadable theme implementation below
  */
 
 import { getStoredTheme, getThemeFilePath } from "@lib/api/native/loader";

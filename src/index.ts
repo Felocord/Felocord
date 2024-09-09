@@ -31,7 +31,7 @@ export default async () => {
             }
             initThemes();
         } catch (e) {
-            console.error("[Bunny] Failed to initialize themes...", e);
+            console.error("[Felocord] Failed to initialize themes...", e);
         }
     }
 
@@ -53,7 +53,7 @@ export default async () => {
     );
 
     // Assign window object
-    window.bunny = lib;
+    window.felocord = lib;
 
     // Once done, load Vendetta plugins
     VdPluginManager.initPlugins()
@@ -66,5 +66,5 @@ export default async () => {
     updateFonts();
 
     // We good :)
-    logger.log("Bunny is ready!");
+    logger.log("Felocord is ready!");
 };

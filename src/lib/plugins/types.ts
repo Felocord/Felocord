@@ -21,7 +21,7 @@ export interface PluginSettingsStorage {
     };
 }
 
-export interface BunnyPluginManifest {
+export interface FelocordPluginManifest {
     readonly id: string;
     readonly name: string;
     readonly description: string;
@@ -29,7 +29,7 @@ export interface BunnyPluginManifest {
     readonly authors: (Author | string)[];
 }
 
-export interface BunnyPluginManifestInternal extends BunnyPluginManifest {
+export interface FelocordPluginManifestInternal extends FelocordPluginManifest {
     readonly parentRepository: string;
     readonly jsPath?: string;
 }
@@ -41,15 +41,15 @@ export interface PluginInstance {
 }
 
 export interface PluginInstanceInternal extends PluginInstance {
-    readonly manifest: BunnyPluginManifest;
+    readonly manifest: FelocordPluginManifest;
 }
 
-export interface BunnyPluginProperty {
-    readonly manifest: BunnyPluginManifestInternal;
+export interface FelocordPluginProperty {
+    readonly manifest: FelocordPluginManifestInternal;
     readonly logger: Logger;
     createStorage<T>(): ReturnType<typeof createStorage<T>>;
 }
 
-export type BunnyPluginObject = typeof window.bunny & {
-    plugin: BunnyPluginProperty;
+export type FelocordPluginObject = typeof window.felocord & {
+    plugin: FelocordPluginProperty;
 };

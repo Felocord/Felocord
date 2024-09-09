@@ -28,7 +28,7 @@ let context = null;
 const config = {
     entryPoints: ["src/entry.ts"],
     bundle: true,
-    outfile: "dist/bunny.js",
+    outfile: "dist/felocord.js",
     format: "iife",
     splitting: false,
     external: [],
@@ -38,7 +38,7 @@ const config = {
         "const-and-let": false
     },
     footer: {
-        js: "//# sourceURL=bunny"
+        js: "//# sourceURL=felocord"
     },
     loader: {
         ".png": "dataurl"
@@ -49,14 +49,14 @@ const config = {
     inject: ["./shims/asyncIteratorSymbol.js", "./shims/promiseAllSettled.js"],
     legalComments: "none",
     alias: {
-        "!bunny-deps-shim!": "./shims/depsModule.ts",
+        "!felocord-deps-shim!": "./shims/depsModule.ts",
         "spitroast": "./node_modules/spitroast",
         "react/jsx-runtime": "./shims/jsxRuntime"
     },
     plugins: [
         globalPlugin({
             ...metroDeps.reduce((obj, key) => {
-                obj[key] = `require("!bunny-deps-shim!")[${JSON.stringify(key)}]`;
+                obj[key] = `require("!felocord-deps-shim!")[${JSON.stringify(key)}]`;
                 return obj;
             }, {})
         }),
@@ -70,7 +70,7 @@ const config = {
                             transform: {
                                 constModules: {
                                     globals: {
-                                        "bunny-build-info": {
+                                        "felocord-build-info": {
                                             version: `"${context.hash}-${releaseBranch ?? "local"}"`
                                         }
                                     }

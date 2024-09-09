@@ -15,7 +15,7 @@ import * as themes from "./themes";
 import { proxyLazy } from "./utils/lazy";
 
 export const managers = proxyLazy(() => {
-    console.warn("bunny.managers.* is deprecated, and moved the top level (bunny.*). bunny.managers will be eventually removed soon");
+    console.warn("felocord.managers.* is deprecated, and moved the top level (felocord.*). felocord.managers will be eventually removed soon");
 
     return {
         get fonts() { return fonts; },
@@ -29,7 +29,7 @@ const _disposer = [] as Array<() => unknown>;
 export function unload() {
     for (const d of _disposer) if (typeof d === "function") d();
     // @ts-expect-error
-    delete window.bunny;
+    delete window.felocord;
 }
 
 /**

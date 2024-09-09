@@ -4,7 +4,7 @@ import { debounce } from "es-toolkit";
 import { ModuleFlags, ModulesMapInternal } from "./enums";
 
 const CACHE_VERSION = 52;
-const BUNNY_METRO_CACHE_KEY = "__bunny_metro_cache_key__";
+const BUNNY_METRO_CACHE_KEY = "__felocord_metro_cache_key__";
 
 type ModulesMap = {
     [flag in number | `_${ModulesMapInternal}`]?: ModuleFlags;

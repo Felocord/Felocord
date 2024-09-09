@@ -1,6 +1,6 @@
 import { findAssetId } from "@lib/api/assets";
 import { installPlugin, isPluginInstalled, uninstallPlugin } from "@lib/plugins";
-import { BunnyPluginManifest } from "@lib/plugins/types";
+import { FelocordPluginManifest } from "@lib/plugins/types";
 import { showToast } from "@lib/ui/toasts";
 import { safeFetch } from "@lib/utils";
 import { OFFICIAL_PLUGINS_REPO_URL } from "@lib/utils/constants";
@@ -24,7 +24,7 @@ async function fetchManifest(repoURL: string, id: string) {
 
     queryClient.setQueryData(["plugin-manifest-dist", { id }], data);
 
-    return data as BunnyPluginManifest;
+    return data as FelocordPluginManifest;
 }
 
 async function* getManifests(repoUrl: string) {
@@ -75,7 +75,7 @@ function TrailingButtons(props: { id: string }) {
     </Stack>;
 }
 
-function PluginCard(props: { repoUrl: string, id: string, manifest: BunnyPluginManifest; }) {
+function PluginCard(props: { repoUrl: string, id: string, manifest: FelocordPluginManifest; }) {
     const { isPending, error, data: plugin } = useQuery({
         queryKey: ["plugin-manifest-dist", { id: props.id }],
         queryFn: () => fetchManifest(props.repoUrl, props.id)

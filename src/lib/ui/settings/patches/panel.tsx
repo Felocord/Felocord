@@ -31,11 +31,11 @@ export function patchPanelUI(unpatches: (() => void | boolean)[]) {
     unpatches.push(after("default", findByNameLazy("getScreens", false), (_a, screens) => ({
         ...screens,
         VendettaCustomPage: {
-            title: "Bunny",
+            title: "Felocord",
             render: () => <CustomPageRenderer />
         },
         BUNNY_CUSTOM_PAGE: {
-            title: "Bunny",
+            title: "Felocord",
             render: () => <CustomPageRenderer />
         }
     })));

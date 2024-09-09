@@ -7,7 +7,7 @@ interface CorePlugin {
 
 // Called from @lib/plugins
 export const getCorePlugins = (): Record<string, CorePlugin> => ({
-    "bunny.quickinstall": require("./quickinstall")
+    "felocord.quickinstall": require("./quickinstall")
 });
 
 /**
@@ -15,6 +15,6 @@ export const getCorePlugins = (): Record<string, CorePlugin> => ({
  */
 export function defineCorePlugin(instance: PluginInstanceInternal): PluginInstanceInternal {
     // @ts-expect-error
-    instance[Symbol.for("bunny.core.plugin")] = true;
+    instance[Symbol.for("felocord.core.plugin")] = true;
     return instance;
 }

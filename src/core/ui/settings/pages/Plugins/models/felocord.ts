@@ -1,10 +1,10 @@
 import { useProxy } from "@lib/api/storage/new";
 import { disablePlugin, enablePlugin, getId, getPluginSettingsComponent,isPluginEnabled, pluginSettings } from "@lib/plugins";
-import { BunnyPluginManifest } from "@lib/plugins/types";
+import { FelocordPluginManifest } from "@lib/plugins/types";
 
 import { UnifiedPluginModel } from "..";
 
-export default function unifyBunnyPlugin(manifest: BunnyPluginManifest): UnifiedPluginModel {
+export default function unifyFelocordPlugin(manifest: FelocordPluginManifest): UnifiedPluginModel {
     return {
         id: manifest.id,
         name: manifest.name,

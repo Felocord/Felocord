@@ -2,7 +2,7 @@ How to update to latest upstream repo:
 
 First Time:
 
-- git remote add public https://github.com/pyoncord/Bunny
+- git remote add public https://github.com/felitendo/Felocord
 
 Then:
 
