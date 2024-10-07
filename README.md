@@ -32,3 +32,9 @@ A mod for Discord's mobile apps, a fork of [Vendetta](https://github.com/vendett
 1. Make your changes, rebuild, reload, go wild!
 
 Alternatively, you can directly *serve* the bundled code by running `pnpm serve`. `felocord.js` will be served on your local address under the port 4040. You will then insert `http://<local ip address>:4040/felocord.js` as a custom url and reload. Whenever you restart your mobile client, the script will rebuild the bundle as your client fetches it.
+
+---
+
+### Part of [FELO](https://felo.gg)
+
+---
