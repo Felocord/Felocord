@@ -1,15 +1,15 @@
 import { getCorePlugins } from "@core/plugins";
 import { readFile, removeFile, writeFile } from "@lib/api/native/fs";
-import { awaitStorage, createStorage, getPreloadedStorage, preloadStorageIfExists, updateStorageAsync } from "@lib/api/storage/new";
+import { awaitStorage, createStorage, getPreloadedStorage, preloadStorageIfExists, updateStorage } from "@lib/api/storage";
 import { safeFetch } from "@lib/utils";
 import { OFFICIAL_PLUGINS_REPO_URL } from "@lib/utils/constants";
 import { semver } from "@metro/common";
 
-import { createFelocordPluginAPI } from "./api";
+import { createBunnyPluginAPI } from "./api";
 import * as t from "./types";
 
 type PluginInstantiator = (
-    felocord: t.FelocordPluginObject,
+    bunny: t.BunnyPluginObject,
     definePlugin?: (p: t.PluginInstance) => t.PluginInstanceInternal
 ) => t.PluginInstanceInternal;
 
@@ -18,14 +18,14 @@ type PluginInstantiator = (
 // stores the always existing core plugins instances (which can't be destroyed)
 export const corePluginInstances = new Map<string, t.PluginInstanceInternal>();
 
-export const registeredPlugins = new Map<string, t.FelocordPluginManifest>();
+export const registeredPlugins = new Map<string, t.BunnyPluginManifest>();
 export const pluginInstances = new Map<string, t.PluginInstanceInternal>();
-export const apiObjects = new Map<string, ReturnType<typeof createFelocordPluginAPI>>();
+export const apiObjects = new Map<string, ReturnType<typeof createBunnyPluginAPI>>();
 
 export const pluginRepositories = createStorage<t.PluginRepoStorage>("plugins/repositories.json");
 export const pluginSettings = createStorage<t.PluginSettingsStorage>("plugins/settings.json");
 
-const manifestToId = new WeakMap<t.FelocordPluginManifest, string>();
+const manifestToId = new WeakMap<t.BunnyPluginManifest, string>();
 
 const _fetch = (repoUrl: string, path: string) => safeFetch(new URL(path, repoUrl), { cache: "no-store" });
 const fetchJS = (repoUrl: string, path: string) => _fetch(repoUrl, path).then(r => r.text());
@@ -47,11 +47,15 @@ function newerThan(v1: string, v2: string) {
     return semver.prerelease(v1)?.includes("dev") && semver.eq(coerced, v2);
 }
 
-function isExternalPlugin(manifest: t.FelocordPluginManifest): manifest is t.FelocordPluginManifestInternal {
+function isExternalPlugin(manifest: t.BunnyPluginManifest): manifest is t.BunnyPluginManifestInternal {
     return "parentRepository" in manifest;
 }
 
-export function getId<T extends t.FelocordPluginManifest>(manifest: T): string {
+export function isCorePlugin(id: string) {
+    return corePluginInstances.has(id);
+}
+
+export function getId<T extends t.BunnyPluginManifest>(manifest: T): string {
     const id = manifestToId.get(manifest);
     assert(id, manifest?.name ?? "unknown", "getting ID from an unregistered/invalid manifest");
     return id;
@@ -80,7 +84,7 @@ export function isPluginEnabled(id: string) {
  * @returns The newly fetched plugin manifest
  */
 export async function updateAndWritePlugin(repoUrl: string, id: string, fetchScript: boolean) {
-    const manifest: t.FelocordPluginManifestInternal = await fetchJSON(repoUrl, `plugins/${id}/manifest.json`);
+    const manifest: t.BunnyPluginManifestInternal = await fetchJSON(repoUrl, `plugins/${id}/manifest.json`);
 
     // @ts-expect-error - Setting a readonly property
     manifest.parentRepository = repoUrl;
@@ -93,7 +97,7 @@ export async function updateAndWritePlugin(repoUrl: string, id: string, fetchScr
         await writeFile(manifest.jsPath, js);
     }
 
-    await updateStorageAsync(`plugins/manifests/${id}.json`, manifest);
+    await updateStorage(`plugins/manifests/${id}.json`, manifest);
 
     if (registeredPlugins.has(id)) {
         const existingManifest = registeredPlugins.get(id)!;
@@ -143,7 +147,7 @@ export async function updateRepository(repoUrl: string) {
     if (!storedRepo) {
         for (const id in repo) {
             if (corePluginInstances.has(id)) {
-                throw new Error(`Plugins can't have the same ID as any of Felocord core plugin '${id}'`);
+                throw new Error(`Plugins can't have the same ID as any of Bunny core plugin '${id}'`);
             }
         }
 
@@ -171,7 +175,7 @@ export async function updateRepository(repoUrl: string) {
 
     // Register plugins in this repository
     for (const id in repo) {
-        const manifest = getPreloadedStorage<t.FelocordPluginManifest>(`plugins/manifests/${id}.json`);
+        const manifest = getPreloadedStorage<t.BunnyPluginManifest>(`plugins/manifests/${id}.json`);
         if (manifest === undefined) continue; // shouldn't happen, but just incase if it does
 
         const existing = registeredPlugins.get(id);
@@ -295,8 +299,8 @@ export async function startPlugin(id: string) {
             // jsPath should always exists when the plugin is installed, unless the storage is corrupted
             const iife = await readFile(manifest.jsPath!!);
             var instantiator = globalEvalWithSourceUrl(
-                `(felocord,definePlugin)=>{${iife};return plugin?.default ?? plugin;}`,
-                `felocord-plugin/${id}-${manifest.version}`
+                `(bunny,definePlugin)=>{${iife};return plugin?.default ?? plugin;}`,
+                `bunny-plugin/${id}-${manifest.version}`
             ) as PluginInstantiator;
         } catch (error) {
             throw new Error("An error occured while parsing plugin's code, possibly a syntax error?", { cause: error });
@@ -304,7 +308,7 @@ export async function startPlugin(id: string) {
 
         // Stage two, load the plugin
         try {
-            const api = createFelocordPluginAPI(id);
+            const api = createBunnyPluginAPI(id);
             pluginInstance = instantiator(api.object, p => {
                 return Object.assign(p, {
                     manifest
@@ -347,9 +351,24 @@ export function stopPlugin(id: string) {
     pluginInstances.delete(id);
 }
 
-export async function checkAndRegisterUpdates() {
+async function updateAllRepository() {
+    try {
+        await updateRepository(OFFICIAL_PLUGINS_REPO_URL);
+    } catch (error) {
+        console.error("Failed to update official plugins repository", error);
+    }
+
+    await Promise.allSettled(Object.keys(pluginRepositories).map(async repo => {
+        if (repo !== OFFICIAL_PLUGINS_REPO_URL) {
+            await updateRepository(repo);
+        }
+    }));
+}
+
+export async function updatePlugins() {
     await awaitStorage(pluginRepositories, pluginSettings);
 
+    // Register core plugins
     const corePlugins = getCorePlugins();
     for (const id in corePlugins) {
         const {
@@ -367,12 +386,7 @@ export async function checkAndRegisterUpdates() {
         corePluginInstances.set(id, instance);
     }
 
-    // await updateRepository(OFFICIAL_PLUGINS_REPO_URL);
-    // await Promise.allSettled(Object.keys(pluginRepositories).map(async repo => {
-    //     if (repo !== OFFICIAL_PLUGINS_REPO_URL) {
-    //         await updateRepository(repo);
-    //     }
-    // }));
+    await updateAllRepository();
 }
 
 /**

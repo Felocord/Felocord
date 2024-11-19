@@ -1,6 +1,6 @@
+import { Author } from "@lib/addons/types";
 import { createStorage } from "@lib/api/storage";
 import { Logger } from "@lib/utils/logger";
-import { Author } from "@lib/utils/types";
 
 export interface PluginRepo {
     [id: string]: {
@@ -26,7 +26,7 @@ export interface FelocordPluginManifest {
     readonly name: string;
     readonly description: string;
     readonly version: string;
-    readonly authors: (Author | string)[];
+    readonly authors: Author[];
 }
 
 export interface FelocordPluginManifestInternal extends FelocordPluginManifest {
@@ -47,7 +47,7 @@ export interface PluginInstanceInternal extends PluginInstance {
 export interface FelocordPluginProperty {
     readonly manifest: FelocordPluginManifestInternal;
     readonly logger: Logger;
-    createStorage<T>(): ReturnType<typeof createStorage<T>>;
+    createStorage<T extends object>(): ReturnType<typeof createStorage<T>>;
 }
 
 export type FelocordPluginObject = typeof window.felocord & {
