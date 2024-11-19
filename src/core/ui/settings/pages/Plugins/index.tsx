@@ -17,7 +17,7 @@ import { Card, FlashList, IconButton, Text } from "@metro/common/components";
 import { ComponentProps } from "react";
 import { View } from "react-native";
 
-import unifyBunnyPlugin from "./models/bunny";
+import unifyFelocordPlugin from "./models/felocord";
 import unifyVdPlugin from "./models/vendetta";
 
 export interface UnifiedPluginModel {
@@ -75,7 +75,7 @@ export default function Plugins() {
             useObservable([pluginSettings]);
 
             const vdPlugins = Object.values(VdPluginManager.plugins).map(unifyVdPlugin);
-            const bnPlugins = [...registeredPlugins.values()].filter(p => isPluginInstalled(p.id) && !isCorePlugin(p.id)).map(unifyBunnyPlugin);
+            const bnPlugins = [...registeredPlugins.values()].filter(p => isPluginInstalled(p.id) && !isCorePlugin(p.id)).map(unifyFelocordPlugin);
 
             return [...vdPlugins, ...bnPlugins];
         }}

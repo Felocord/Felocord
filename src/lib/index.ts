@@ -20,7 +20,7 @@ import { proxyLazy } from "./utils/lazy";
 
 /**
  * @internal
- * @deprecated Moved to top level (bunny.*)
+ * @deprecated Moved to top level (felocord.*)
  */
 export const managers = proxyLazy(() => {
     console.warn("felocord.managers.* is deprecated, and moved the top level (felocord.*). felocord.managers will be eventually removed soon");

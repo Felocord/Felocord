@@ -1,5 +1,5 @@
 import { disablePlugin, enablePlugin, getId, getPluginSettingsComponent, isPluginEnabled, pluginSettings } from "@lib/addons/plugins";
-import { BunnyPluginManifest } from "@lib/addons/plugins/types";
+import { FelocordPluginManifest } from "@lib/addons/plugins/types";
 import { useObservable } from "@lib/api/storage";
 
 import { UnifiedPluginModel } from "..";

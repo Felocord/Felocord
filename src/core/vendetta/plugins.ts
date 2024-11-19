@@ -40,7 +40,7 @@ export const VdPluginManager = {
     async pluginFetch(url: string) {
         if (url.startsWith(VD_PROXY_PREFIX)) {
             url = url
-                .replace("https://bunny-mod.github.io/plugins-proxy", BUNNY_PROXY_PREFIX)
+                .replace("https://felocord-mod.github.io/plugins-proxy", BUNNY_PROXY_PREFIX)
                 .replace(VD_PROXY_PREFIX, BUNNY_PROXY_PREFIX);
         }
 
@@ -98,7 +98,7 @@ export const VdPluginManager = {
                 // Wrapping this with wrapSync is NOT an option.
                 storage: await createStorage<Record<string, any>>(createMMKVBackend(plugin.id)),
             },
-            logger: new LoggerClass(`Bunny » ${plugin.manifest.name}`),
+            logger: new LoggerClass(`Felocord » ${plugin.manifest.name}`),
         };
         const pluginString = `vendetta=>{return ${plugin.js}}\n//# sourceURL=${plugin.id}`;
 

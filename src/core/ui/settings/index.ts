@@ -1,4 +1,4 @@
-import PyoncordIcon from "@assets/icons/felitendo.png";
+import FelitendoIcon from "@assets/icons/felitendo.png";
 import { Strings } from "@core/i18n";
 import { useProxy } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
@@ -7,7 +7,7 @@ import { settings } from "@lib/api/settings";
 import { registerSection } from "@ui/settings";
 import { version } from "felocord-build-info";
 
-export { PyoncordIcon };
+export { FelitendoIcon };
 
 export default function initSettings() {
     registerSection({
@@ -16,7 +16,7 @@ export default function initSettings() {
             {
                 key: "BUNNY",
                 title: () => Strings.BUNNY,
-                icon: { uri: PyoncordIcon },
+                icon: { uri: FelitendoIcon },
                 render: () => import("@core/ui/settings/pages/General"),
                 useTrailing: () => `(${version})`
             },

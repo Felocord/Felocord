@@ -1,4 +1,4 @@
-# Felocord [![Discord](https://img.shields.io/discord/1196075698301968455?style=social&logo=discord&label=Pyoncord)](https://discord.gg/XjYgWXHb9Q)
+# Felocord [![Discord](https://img.shields.io/discord/1196075698301968455?style=social&logo=discord&label=Felitendo)](https://discord.gg/XjYgWXHb9Q)
 A mod for Discord's mobile apps, a fork of [Vendetta](https://github.com/vendetta-mod/Vendetta/).
 
 ## Installing
